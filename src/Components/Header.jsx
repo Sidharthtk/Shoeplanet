@@ -1,8 +1,10 @@
 import React, { useMemo, useState } from 'react'
-import { data, Link } from 'react-router-dom'
+import { data, Link, useNavigate } from 'react-router-dom'
 import { menData, womenData } from '../../data'
 
 function Header() {
+    
+    const navigate=useNavigate()
 
     const [querry, setQuery] = useState("")
 
@@ -31,13 +33,13 @@ function Header() {
                         <Link to="/women"><li><a>Women</a></li></Link>
                     </ul>
                 </div>
-                <div className="navbar-end pr-6 relative w-fit ml-5 ">
+                <div className=" navbar-end pr-6 relative w-fit  ">
                     <input value={querry} onChange={(e) => setQuery(e.target.value)} type="text" placeholder='Search' className=' border-black border-[1px] rounded-xl pl-3' />
                     <img src="../assets/search.svg" className=' size-5 mr-5  ' />
-                    <div className='absolute bg-slate-300 top-8 -left-5 cursor-pointer'>
+                    <div className='absolute bg-slate-200 top-8 -left-5 cursor-pointer z-10 ml-3 '>
                         {querry && searchResult.map((data) => {
                             return (
-                                <div onClick={()=>navigate(`/shoe/${data.id}`)} key={data.id}>
+                                <div  onClick={()=>navigate(`/shoe/${data.id}`)}  key={data.id} className=' hover:bg-slate-300 p-2  '>
                                     {data.product_name}
                                 </div>
                             )
